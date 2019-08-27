@@ -385,15 +385,3 @@ function foo(n) {
 
 Note:
 - fast_power: dividing is good as it reduces size by half, so slowest will be divide, minus, divide, minus...and that is possible for 2^n-1
-
----
-
-### Question 2
-
-$r_2(n) = 10n\log{n}$
-
-$Claim: r_2(n) \leq k \cdot{} n^2$, for  $k = 2, n_0 > 5$
-
-$\Rightarrow 10n\log{n} \leq 2n^2$
-
-$\Rightarrow 5\log{n} - n \leq 0$
