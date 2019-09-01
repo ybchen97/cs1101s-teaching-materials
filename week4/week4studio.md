@@ -9,16 +9,20 @@ revealOptions:
 
 ---
 
-### Agenda
+## Studio 3 Quesition 2
 
-- Comments from Mission
-- Coin Change
-- Higher Order Functions
-- Studio
+> Ben Bitdiddle's claim actually depends on the base of the logarithm!
+
+Note:
+- Show desmos.com for graphing calculator
 
 ---
 
-### Comments from Missions
+### This Week's Agenda
+
+- Coin Change
+- Higher Order Functions
+- Studio
 
 ---
 
@@ -186,16 +190,6 @@ function definition under this restriction:
 function myfunc(a, b, c) {
     return a * b + c;
 }
-```
-
-----
-
-### Higher Order Functions
-
-```javascript
-function myfunc(a) {
-    return b => c => a * b + c;
-}
 
 /*
 With this new function definition, how do you rewrite the
@@ -211,14 +205,10 @@ function call myfunc(3, 2, 1)?
 function myfunc(a) {
     return b => c => a * b + c;
 }
-
-/*
-With this new function definition, how do you rewrite the
-function call myfunc(3, 2, 1)?
-*/
 
 ((myfunc(3))(2))(1);
 ```
+
 ----
 
 ### [Higher Order Functions](https://sourceacademy.nus.edu.sg/playground#chap=1&ext=NONE&prgrm=GYVwdgxgLglg9mABABwDYgM4H0EFMAUAHgJSIDeAsItYgE65Qi1KGIDUiAjANwUC%2BFUJFgJEUWgEMwGfEIilKNOgyYtEAXgB8iAEyIAVIjlEDu4rwFyRSKAHcYEAnIVUa9Rs0SstR8BFl%2BRMTm-BQU%2BPh2DgTiUjJomDhguMHB%2BJwhEVGOkZLSaQnYeGkZ3EA)
