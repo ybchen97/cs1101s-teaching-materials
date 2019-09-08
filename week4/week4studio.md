@@ -37,12 +37,12 @@ Note:
 ### Coin Change
 
 - Base case:
-    - 0 amount of money left &mdash; 1 <!-- .element: class="fragment" -->
-    - 0 kinds of coins &mdash; 0 <!-- .element: class="fragment" -->
-    - < 0 amount of money left &mdash; 0 <!-- .element: class="fragment" -->
+    - 0 amount of money left &mdash; 1 
+    - 0 kinds of coins &mdash; 0 
+    - < 0 amount of money left &mdash; 0 
 - Smaller problem:
-    - Number of ways to change money **using first kind of coin** <!-- .element: class="fragment" -->
-    - Number of ways to change money **without using first kind of coin** <!-- .element: class="fragment" -->
+    - Number of ways to change money **using first kind of coin** 
+    - Number of ways to change money **without using first kind of coin** 
 
 <img src="coins.jpg" style="position: absolute; top: 10%; right: 0; max-width: 35%; margin-left: auto; margin-right: auto;">
 
@@ -117,7 +117,7 @@ f(3);
 
 What is the result of this program?  
 
-Ans: 3 <!-- .element: class="fragment" -->
+Ans: 3 
 
 ----
 
@@ -139,7 +139,29 @@ f(x);
 
 What is the result of this program?  
 
-Ans: 5 <!-- .element: class="fragment" -->
+Ans: 10  
+
+----
+
+### Variable Scoping
+
+```javascript
+const x = 5;
+
+function f2(y) {
+    const a = 10;
+    function g(y) {
+        return x;
+    }
+    return g(a);
+}
+
+f2(x);
+```
+
+What is the result of this program?  
+
+Ans: 5
 
 ---
 
@@ -150,7 +172,7 @@ An expression that defines a function, but does not assign a name to the functio
 x => x + 1;
 ```
 
-Question: Can you still assign a name to the arrow function? <!-- .element: class="fragment" -->
+Question: Can you still assign a name to the arrow function? 
 
 ----
 
@@ -162,7 +184,7 @@ const addone = x => x + 1;
 addone(1); // returns 2
 ```
 
-- Why? <!-- .element: class="fragment" -->
+- Why? 
     - More concise way of defining functions
     - Often used for short, one-lined functions where names are not needed
     - Higher order functions
@@ -211,7 +233,7 @@ function myfunc(a) {
 
 ----
 
-### [Higher Order Functions](https://sourceacademy.nus.edu.sg/playground#chap=1&ext=NONE&prgrm=GYVwdgxgLglg9mABABwDYgM4H0EFMAUAHgJSIDeAsItYgE65Qi1KGIDUiAjANwUC%2BFUJFgJEUWgEMwGfEIilKNOgyYtEAXgB8iAEyIAVIjlEDu4rwFyRSKAHcYEAnIVUa9Rs0SstR8BFl%2BRMTm-BQU%2BPh2DgTiUjJomDhguMHB%2BJwhEVGOkZLSaQnYeGkZ3EA)
+### [Higher Order Functions](https://sourceacademy.nus.edu.sg/playground#chap=1&ext=NONE&prgrm=GYVwdgxgLglg9mABABwDYgM4H0EFMAUAHgJSIDeAUItYgE65Qi1KGIDUiAjANwUC%2BFCqEiwEiKLQCGYDPmERSlGnQZMWiALwA%2BRACZEAKkTyihvcV4Ch4aPCRQA7jAgF5iqjXqNmiVtuM2coEkFvyCEAgYUOIAFrTOuJrGmjp%2BOsBymSGhFAD0uYgAogBukuiSUIlQMYnAcKiocE5gAOYUACYwGGiSAJ74A44J%2BBLSsmiYOGC4xLPE%2BJyz3Ij5Kt4yegBsHV09-YNOLiNSMrP4E9h4Z4sWKwVeahh6AAw73ah9AyNxw6On8xcpjN5jdlqsHswngB2XRAA)
 
 ```javascript
 function plus_one(x) {
@@ -223,16 +245,17 @@ function trans(func) {
 function twice(func) {
     return x => func(func(x));
 }
+const thrice = f => f(f(f(x)));
 
 // Evaluate the following
 ((twice(trans(plus_one))))(1);
 ((twice(trans))(plus_one))(1);
+((thrice(trans))(plus_one))(1);
 ```
 
-`(twice(trans(plus_one)))(1): 26` <!-- .element: class="fragment" -->
-
-`((twice(trans))(plus_one))(1): 20` <!-- .element: class="fragment" -->
-
+`(twice(trans(plus_one)))(1): 26` 
+`((twice(trans))(plus_one))(1): 20` 
+`((thrice(trans))(plus_one))(1): 72` 
 ----
 
 ### Higher Order Functions
@@ -266,13 +289,13 @@ const add1 = x => x + 1;
 
 ### [Thrice Thrice Thrice](https://sourceacademy.nus.edu.sg/playground#chap=1&ext=NONE&prgrm=GYVwdgxgLglg9mABBOBbADnAzgUwBTAA0iA5gJSIDeAUInYgE45QgNIAeiAvAHyLB4SedmTIBuagF9q1UJFgJEUABYMYEfMAo16jZqyQoM2fEcy4CxLVfFSZc6PCQBDACauE%2BEVVr0mLNkROAGpEAEYJaVlwR0UsAEcQZyZhbV86fwMgxAAqIMj0xGoAemLEPBU1DQrVdRxRPDcPMHq8ADZbUqVa6sq6skb3TwGAVgouCfK%2B3p78afwm4dFR2yA)
 
-1. `thrice(thrice)(f)` $\equiv$ `thrice(thrice(thrice(f)))`  
+1. `thrice(thrice)(f)` &#9776;  `thrice(thrice(thrice(f)))`  
 
-2. `thrice(thrice)(f)` $\equiv$ `thrice(thrice(x => f`$^3$`(x)))`  
+2. `thrice(thrice)(f)` &#9776;  `thrice(thrice(x => f`<sup>3</sup>`(x)))`  
 
-3. `thrice(thrice)(f)` $\equiv$ `thrice(x => f`$^9$`(x))`  
+3. `thrice(thrice)(f)` &#9776;  `thrice(x => f`<sup>9</sup>`(x))`  
 
-4. `thrice(thrice)(f)` $\equiv$ `x => f`$^{27}$`(x)`
+4. `thrice(thrice)(f)` &#9776;  `x => f`<sup>27</sup>`(x)`
 
 ---
 
