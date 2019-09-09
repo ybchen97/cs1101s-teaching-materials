@@ -12,7 +12,7 @@ revealOptions:
 ### Agenda
 
 - Reading Assessment
-- Comments from Mission
+- Updates
 - Data Structures - Lists & Pairs
 - Identity vs Equality
 - Studio
@@ -45,10 +45,10 @@ Note:
 
 ---
 
-### Comments from Mission
+### Updates
 
 - [Source 2 documentation](https://sicp.comp.nus.edu.sg/source/source_2.pdf) (**Highly recommend reading**)
-- No unsubmit option anymore. **Check** before you submit!
+- No unsubmit option for missions anymore. **Check** before you submit!
 
 ---
 
@@ -65,7 +65,7 @@ Note:
 
 **Definition**: A list is either `null` or a pair whose tail is a list
 > Definition of a list is recursive! 
-<!-- .element: class="fragment" -->
+
 
 ```javascript
 /*
@@ -75,7 +75,7 @@ list(1, 2, 3, 4) -> pair(1,
                                 pair(4, null))))
 */
 ``` 
-<!-- .element: class="fragment" -->
+
 
 Note:
 - Talk through the definition of a list using this as an example.
@@ -91,7 +91,7 @@ Note:
 - Tail
     - Points to the next item in the sequence
     - Contains `null` if it is the last item of a list.
-    - Note that `null` is also considered an item!
+    - Note that `null` can also be considered as an item!
 
 ----
 
@@ -100,7 +100,7 @@ Note:
 > Write out a program which gives this box and pointer diagram:
 > <img src="cool_list.png" style="display: block;">
 
-Is this a list? <!-- .element: class="fragment" -->
+Is this a list? 
 
 ---
 
@@ -147,10 +147,12 @@ Note:
 How to check for equality of lists?
 > Create a recursive function `equal()` that takes in two list inputs, x and y, and returns `true` if list x is equal to list y, and `false` otherwise
 
+What kind of structure will result in the worst possible performance for this function?
+
 Note:
-- What's the worst case for the performance of this function? Binary Trees
-- Time complexity: O(n) if n refers to number of items in tree
-- Space complexity: O(log(n)) if n refers to number of items in tree
+- What's the worst case for the performance of this function? A structure similar to Binary Trees but is not
+- Time complexity: O(n) if n refers to number of pairs in the structure
+- Space complexity: O(log(n)) if n refers to number of pairs in the structure
 
 ---
 
@@ -164,11 +166,11 @@ Note:
 
 ### Equality vs Identity
 
-- Booleans: straightforward
-- Strings: straightforward
-- Numbers: straightforward for small integers, but not the case for non-intergers and large numbers
-- Functions: Two separately defined functions are always not identical, even if they have the exact same behaviour
-- Lists: Two separately defined lists are always not identical, even if they have the same value and structure
+- **Booleans**: straightforward
+- **Strings**: straightforward
+- **Numbers**: straightforward for small integers, but not the case for non-intergers and large numbers
+- **Functions**: Two separately defined functions are always not identical, even if they have the exact same behaviour
+- **Lists**: Two separately defined lists are always not identical, even if they have the same value and structure
 
 ----
 
@@ -247,9 +249,16 @@ Note:
 - Time complexity: O(n)
 - Space complexity: O(1)
 
+
 ----
 
-### [Studio Q5](https://sourceacademy.nus.edu.sg/playground#chap=2&ext=NONE&prgrm=GYVwdgxgLglg9mABAZxAW2QCgB7IJSIDeAUImYqJLAogBYCmANgA70BOmAnsgDSL0A3emD5wAJmIIlyMxG3pQQbJDGQB9MCEaMu%2BUrIMB%2BRI1VRM4sX0HC8%2BgzIBcdJqw5QAhjB3c8oiYgA1C4eYrp%2B-EJgeADc9ogAvvHyisouLOw4vIgADHw5scRJxJTQ8EioGABMWVLxpdRIDBkc3HyqajYikcL%2BkkTxMilKKuqa2uGDDsamyOZdfXYOss4dXVPLZMbNbpie3uF8wB6MyPTWUUEhYb6LG5vOO5n7Pvh8UGwg5z3dllcMoXChRkSSGChG6V2uHen2%2BeVyhWKDXKPTYnDUZwgCDCpygdTBqSQmA64x0uLwBAAPpTEMSxlodC9MOSKfdjKT7s5mF4OACwkyWRd2OjMdi9l5GRLmXMKRS4sVKlhZuYAIw8Ko8ADMPAALDwAKxy4gAemNKHQyBqyswao12p1RtNqJF9CxYBxZht6q1urlQA)
+### [Studio Q3](https://sourceacademy.nus.edu.sg/playground#chap=1&exec=1000&ext=NONE&prgrm=MYewdgzgLgBANtAjDAvPAltAFAdgDQbYBsBArAQCwCUBAzAXJlFgEwGJVUDcAUAPR8YACwCmAQwAmWKGPRwsoydNnyZc5evjQYnXVR49QkWAigtUhZo2w4alrCRjkY1Bkyz0YLOx14Dh4lJqqioa8lqwegZG2qa0FtbM%2BPZEdolYzunUae6e6Wz2HLp%2BgopSZWEKgZUVwZV1ETp6UYbgsdAUCe7J6emOpDnYrjCe3m7Y6UXc-KXVFbWhDaZNukA)
+
+----
+
+### [Studio Q5](https://sourceacademy.nus.edu.sg/playground#chap=2&exec=1000&ext=NONE&prgrm=PTAEEUFcFMGcBcCWB7AdgLlAFQBaNqAG7QBOsKqoyAZqLJALaj6irLyjSpInQA2AT1ABDAMajIJYfGgA6UAHUcAgPwAoapFSikaOo1gAKAB6wAlKADea0LdCbtuyjn4AHUoYGwANJ2KpfZAATIItrOwjQXnhJSnwAfVRIPj5PcxtIzJVQPnx4Q2Cg32h-MwzMiMwXPncSQ3hhRFSvM0CQ0ABqUBdhILTWvy4zAG5y0ABfMejY7rcPU18ABiWRtUmNLR0KfQZYACYTcysxhy29atq03wSSrmL-NtDjiqjoGJI42ETk5vSXiOyuQQhluASoITK-zsmBu-jGUNs2QuHgaTX6vmowj4sGg9y4nVmvXR4NC8IRVTmdVRvwG8BIMDxYMKBJ6fRaqwikwi0w%2Bsxq8x8oDpDNAy1Fq3WpycgxIAniONEaD62PgYSmbxmhgSSRShhVZgsAB9DaAtV8dalqXqEAbIRVshaybZMK5GnVWfVGql9QNbrL5dBFag%2BlarT6DaN1vRdnq8oYAIzePbeADM3gALN4AKwRtQgHb7WPAxPJtPp3P5v1yhVKov5EupjMRoA)
+
+Click on the link and look at the first sum function defined. Is the implementation correct? Why or why not?
 
 ---
 
@@ -273,7 +282,7 @@ Now, generalize this concept by defining a new function. Given two lists of the 
 ```javascript
 // For example, the following will return list(11, 24, 39)
 
-zip ((x, y) => x * y,
-     list (1, 2, 3),
-     list (11, 12, 13));
+zip((x, y) => x * y,
+    list (1, 2, 3),
+    list (11, 12, 13));
 ```
