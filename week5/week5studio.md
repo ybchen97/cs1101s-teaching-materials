@@ -286,3 +286,5 @@ zip((x, y) => x * y,
     list (1, 2, 3),
     list (11, 12, 13));
 ```
+
+[Solution](https://sourceacademy.nus.edu.sg/playground#chap=2&exec=1000&ext=NONE&prgrm=GYVwdgxgLglg9mABBOBbARjMBTAFADwGcAaRAT0IEpEBvAKEUcQCdsoRmkZCB9MEADYCCVBk3EB%2BcoTHjGALkTc%2Bg4RUqy5kxEU1aFiAA4BDGM1wmzuABbZjAExGVSth7nXPkaTDlxRTwkSe-jBqVJSUANx0AL50dPbMxgDuPPbG-rgoGFh4AtxQuACMpABMpADMpAAspACsnvmEhSWI5YgVEVHxoJCwCIgAXjCGuMCkRKTqtJqs7JxKvPxCTnpMUhRrBsrLYRr6clK6B%2BKKlubANnaOQS7X7uGkw6PjiCGBVKTvD13RcQlJVLpTLPCymZikJotMqVeqNArFGEdOERaJAA)
