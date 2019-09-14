@@ -70,6 +70,8 @@ const decrement_r = r =>
 to_int(decrement_r(three_r));  // should return 2
 ```
 
+Note that O(1) is only possible with **normal-order evaluation** for this particular representation. More info [here](https://piazza.com/class/juazn2axpf35wp?cid=183).
+
 ---
 
 ## Attendance
