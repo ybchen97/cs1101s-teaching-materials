@@ -48,9 +48,7 @@ const add_r = (r1, r2) =>
 ```
 
 Why is this code wrong?
-
-Note:
-- Because of the specification of the representation of a repeater.
+- Because it does not follow the specification of the representation of a repeater.
 
 ----
 
@@ -84,11 +82,10 @@ Note that O(1) is only possible with **normal-order evaluation** for this partic
 
 ### Question 1
 
-Write the function `map` using `accumulate`.  
+> Write the function `map` using `accumulate`.  
 Name your function `my_map`
 
-Note:
-- Approach? Understand what both accumulate and map does by looking at the definition of these two functions.
+- Approach: Understand what both accumulate and map does by looking at the definition of these two functions.
 
 ----
 
@@ -107,14 +104,13 @@ my_map(x => x + 1, list1);
 
 ### Question 2
 
-- Write a function called `remove_duplicates` that 
+> - Write a function called `remove_duplicates` that 
     - Takes in a list as its only argument
     - Returns a list with duplicate elements removed
     - Order of the elements in the returned list does not matter
     - **Use filter in your function**
 
-Note:
-- Approach? Take the head, then remove all other occurences of the head from the tail of the list. Pair the two results together. Use recursion and wishful thinking
+- Approach: Take the head, then remove all other occurences of the head from the tail of the list. Pair the two results together. Use recursion and wishful thinking
 
 ----
 
@@ -129,7 +125,6 @@ function remove_duplicates(lst) {
                    filter(x => !equal(head(lst), x), 
                           tail(lst))));
 }
-
 function remove_duplicates2(lst) {
     return is_null(lst)
         ? null
@@ -139,24 +134,26 @@ function remove_duplicates2(lst) {
 }
 ```
 
-Note:
-- What do these two functions tell you? How do their approaches differ?
-- First one is intuitive, take the head, make sure the head is not in the remaining list, and carry own recursing down.
-- Second one is different, it says take the head, then from the list which already contains no other duplicates other than the head, remove all occurences of the head.
+----
+
+<!-- ### Question 2 -->
+
+### How do their approaches differ? 
+- First one is intuitive. First take the head. Then, from the filtered list which does not contain any other occurences of the head, remove the other duplicates present, and pair these two results together.
+- Second one is different, it says first take the head, then from the list which already has its duplicate elements removed, filter all occurences of the head.
 - First one filters from the start of the list till the end, but the second filters from the end of the list till the start.
 
 ---
 
 ### Question 3
 
-- Write a function called `remove_duplicates` that 
+> - Write a function called `remove_duplicates` that 
     - Takes in a list as its only argument
     - Returns a list with duplicate elements removed
     - Order of the elements in the returned list does not matter
     - **Use accumulate in your function**
 
-Note:
-- Approach? Same thing. Understand what both functions achieve and how they behave, then work from there.
+- Approach: Same thing. Understand what both functions achieve and how they behave, then work from there.
 
 ----
 
@@ -173,10 +170,13 @@ function remove_duplicates(lst) {
 }
 
 ```
-Note:
-- How does it work? Start from the last element and build the unique list all the way to the start. If element is already in the list, just return the list, else pair the element with the list.
+
+----
+
+### How does it work?
+
+- Start from the last element and build the unique list all the way to the start. If element is already in the list, just return the list, else pair the element with the list.
 - Can you use filter instead of member? Yes, but it'll be quite inefficient!
-- Idea of building from the back
 
 ---
 
@@ -185,6 +185,16 @@ Note:
 Our friend Louis Reasoner has a pocket full of change. He wants to buy a snack that will cost him x cents, and he wants to know all the ways in which he can use his change to make up that amount. 
 
 Write a function which takes as parameters the amount x and a list of all the coins Louis has in his pocket, and returns a list of lists, such that each sub-list of the result contains a valid combination to make up x. A combination may appear more than once, since it may be using different coins of the same denomination.
+
+----
+
+### Approach
+
+- What does `makeup_amount` return me? It returns the number of ways I can make change for amount `x` with the list of coins that I have.
+    - It returns a list of the number of ways to give change, which is a list of lists.
+- Think about the different cases that make up all of the number of ways to give change.
+    - Case 1: I use the coin. So this coin will be part of my solution. The implication for my recursive call is this: the amount will decrease, and the list of coins will also decrease, since I have used the coin.
+    - Case 2: I don't use the coin. So this coin is not part of my solution. The implication is this: the amount will not decrease, but the list of coins will still decrease, since I don't want this coin to be part of my solution.
 
 ----
 
@@ -209,19 +219,40 @@ function makeup_amount(x, coins) {
 
 makeup_amount(22, list(1, 10, 5, 20, 1, 5, 1, 50));
 ```
-Note:
-- What does `makeup_amount` return you? It returns the number of ways I can make change for amount `x` with the list of coins that I have.
-- Same as before, split this problem into two parts, either you use the coin, or you don't use the coin.
-- What does `sub` represent? It represents a number of ways I can make change for `x` - `head(coins)` amount of money with `tail(coins)` coins. i.e. a smaller version of the original problem.
-- Why still need to tail(coins) when I choose to use the coin? Because coins are finite. Input is a list of coins, unlike before.
-- Why do you need to `map` the `head` in? Because of what `sub` represents and what `makeup_amount(x - head(coins), tail(coins))` returns.
-- How many of the same solutions do appear in the list? Why? Counting problem: n choose k. Each repeated coin is distinct, which gives "repeated" solutions. Since the order does not matter, how many ways can I choose k number of coins to be part of the solution out of n coins?
+
+----
+
+### Some Questions to Ask Yourself
+
+- What does `sub` represent?
+    - It represents a number of ways I can make change for  
+    (`x` - `head(coins)`) amount of money with (`tail(coins)`) coins. i.e. a smaller version of the original problem.
+- Why still need to tail(coins) when I choose to use the coin?
+    - Because coins are finite, if I use it, it is gone. 
+- Why do you need to `map` the `head` in?
+    - Because `sub` represents only the smaller version of the problem, and not the actual problem that we are solving for. Try working this out to understand what it means.
+- Why do the base cases return different results?
+    - Think of it in terms of what the question is asking for, and what kind of result `makeup_amount` returns.
+- Question: How many of the same solutions do appear in the list?
+    - Simplified answer: n choose k.
 
 ---
 
 ### Question 5
 
-The function `accumulate_n` is similar to `accumulate` except that it takes as its third argument a list of lists, which are all assumed to have the same number of elements. It applies the designated accumulation function to combine all the first elements of the sequences, all the second elements of the sequences, and so on, and returns a list of the results.
+> The function `accumulate_n` is similar to `accumulate` except that it takes as its third argument a list of lists, which are all assumed to have the same number of elements. It applies the designated accumulation function to combine all the first elements of the sequences, all the second elements of the sequences, and so on, and returns a list of the results.
+
+----
+
+### Approach
+
+- Same as before, think of it using recursion and wishful thinking. 
+- What is the base case?
+    - `accumulate_n` takes in a list of lists. So the base case is if each individual list is an empty list, which is null.
+- What is the smaller version of the problem?
+    - The a list containing the tail of each individual list in the original list of lists.
+- How to piece them together?
+    - Accumulate the head of each individual list, then call `accumulate_n` on the smaller problem. Finally, do something to combine these two pieces together.
 
 ----
 
@@ -246,10 +277,6 @@ accumulate_n((x, y) => x + y, 0, s);
 
 Can we do better?
 
-Note:
-- Can directly map `tail` in
-- Can accumulate on the heads of the lists instead
-
 ----
 
 ### [Question 5](https://sourceacademy.nus.edu.sg/playground#chap=2&exec=1000&ext=NONE&prgrm=GYVwdgxgLglg9mABAQwhEBbEAbZUCmA%2BmABRwAOANIjGDFNQM74COAlIgN4BQifiAJ3xQQApDEbEc2EgAt8yACYlm7Nr36aA-IjDSNmvgC5E5ZDAEkDhzanRZcBEiXzZ81IYxxQOAXgB8iBRyCsqu%2BGwe%2BF7YPtS09EyskdY2fHaYOHhEpBTxdAyIGMjkJFDm2ElqbADc3AC%2B3NygkLAIKGiZjjkATGRUNAVVHDyaQiJiNJJ62DLySirJ6mmIOjPYqfwmZhZWK7adDtn9%2BYlFJSFKwyn7-BlHBMQng2fFpeUwlYiqbL91jdwIAhGFBvohfIhsBIoCQoSCSABGag9agAZkikOhJAALNQAKzUABsGLhMIA7NQABzUACcJKxCIADNQEUjEAien9uPcso8wH0SAAPagATz8gUFiAA1IgRdRmd9akA)
@@ -268,6 +295,16 @@ const s = list(list(1, 2, 3), list(4, 5, 6),
 accumulate_n2((x, y) => x + y, 0, s);
 ```
 
+----
+
+### How do they differ?
+
+- First observation is trivial.  
+    - `map(tail, seq)` removes the redundancy of doing `ele => tail(ele)`.
+- Second observation in the `accumulate` function call, however, is not trivial.
+- For the first version, you are taking the `seq` and then applying the function `op` on the `head` of each element, which is a list, in `seq`.
+- For the second version, you first mapping `head` to `seq`, which gives a list containing all the `head` elements of each individual list in `seq` i.e. `list(1, 4, 7, 10)`.
+
 ---
 
 ### Question 6
@@ -275,11 +312,9 @@ accumulate_n2((x, y) => x + y, 0, s);
 Write a function called accumulate_tree that behaves like accumulate but can also work on trees.
 
 > Definition: A tree of a certain data type is a list whose elements are of that type, or trees of that type. Recursion!
-<!-- .element: class="fragment" -->
 
-Note:
-- How to approach? Look at how a tree is defined and represented.
-- A tree of a certain data type is defined by a list whose elements are such data items, or trees of such data type. Recursion!
+
+- Approach: Look at how a tree is defined and represented.
 - As above, use the idea of wishful thinking to help out with your recursion!
 
 ----
@@ -302,16 +337,23 @@ accumulate_tree(
     list(1, 2, list(3, 4), list(5, list(6, 7))));
 ```
 
+- How does it work?
+    - Check each element of the tree. If the element is a tree, then call `accumulate_tree` on the element to get a result. Else, just apply the function `op` to the element and the accumulated result, and continue accumulating.
+
 ---
 
 ### Question 7 (Extra, but important!)
 
 <img src="/q7.png">
 
-Note:
+
+----
+
+### Approach
+
 - How to approach? Like `makeup_amount` actually, think of how to break the problems down using recursion and wishful thinking.
 - You either want the element to be in your set, or not.
-- Note the base case.
+- Note the base case. What does `subsets` return you?
 
 ----
 
@@ -345,15 +387,23 @@ function subsets(xs) {
 }
 ```
 
-Note:
-- This solution follows the idea of want or don't want more closely.
-- Try to show on the board with an example with only 3 elements and show the process of want or don't want.
+----
+
+### How do they differ?
+
+- First solution hinges on the idea of wishful thinking very heavily, just like `makeup_amount`.
+- Second solution builds the list from the bottom. 
+    - So I look at an element of the list `xs`. If I want it, the I map it to every single subset that I had from the previous result, `ss`. Then, I just append it together with the list of subsets without the current element, which is also `ss`. This gives the current result of all the subsets of the elements we have already looked at. Finally, repeat this process with the rest of the elements.
+- The second solution follows the idea of want or don't want more explicitly.
+- Try both of them out with only 3 elements to see the process of want or don't want!
 
 ---
 
 ### Question 8 (Extra, but important!)
 
 <img src="/q8.png">
+
+- Approach: Try it out yourself!
 
 ----
 
