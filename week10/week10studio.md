@@ -1,5 +1,5 @@
 ---
-title: Week 9 Studio
+title: Week 10 Studio
 theme: solarized
 revealOptions:
     transition: 'slide'
@@ -169,52 +169,9 @@ function sort_recur(lst) {
 
 ---
 
-### Question 3(a)
+### Question 3
 
-[Solution](https://sourceacademy.nus.edu.sg/playground#chap=3&exec=1000&ext=NONE&prgrm=GYVwdgxgLglg9mABAWwIYGsCmB9ATAEWwC9MAnObVU01ATwApyB3AZwBpEI4AbFgSkQBvAFCIxnBCyiIqpRAF5EAbQC6AblHjQkWAkQwoZbKUYCR4i4m3R4SA0Yj0IZzZcsxgiJ4gA8E3i5uQeKySqQqShAqCogADBrBwfak2I4QiADUiACMfAmJYgC%2BiJi8mEKIha6WVUmejL6IzPxC1cGh4TGq%2BQXJqfSxeW1BfSZyWbk9NSVlFbXi82KjA0MWpJhQIKRIshqFQA)
-
-----
-
-### Question 3(b)
-
-```javascript
-function num_of_live_neighbours(game, n, r, c) {
-    let live_count = 0;
-    for (let dr = -1; dr <= 1; dr = dr + 1) {
-        for (let dc = -1; dc <= 1; dc = dc + 1) {
-            live_count = live_count +
-                game[(r + dr + n) % n][(c + dc + n) % n];
-        }
-    }
-    return live_count - game[r][c];
-}
-```
-
-Note:
-- How to do this the smart way?
-- Note that you are essentially trying to get the status of the 9 cells - current cell
-
-----
-
-### Question 3(c)
-
-```javascript
-function next_generation(game, n) {
-    const next = make_2D_zero_array(n, n);
-    for (let row = 0; row < n; row = row + 1) {
-        for (let col = 0; col < n; col = col + 1) {
-            live_count = num_of_live_neighbours(game, n, 
-                                                row, col);
-            if (live_count < 2 || live_count > 3) {
-                next[row][col] = 0;
-            } else if (live_count === 3) {
-                next[row][col] = 1;
-            } else {}
-        }
-    }
-    return next;
-}
-```
+[Solutions](https://sourceacademy.nus.edu.sg/playground#chap=3&exec=1000&ext=NONE&prgrm=GYVwdgxgLglg9mABAWwIYGsCmB9ATAEWwC9MAnObVU01ATwApyB3AZwBpEI4AbFgSkQBvAFCIxnBCyiIqpRAF5EAbQC6AblHjQkWAkQwoZbKUYCR4i4m3R4SA0Yj0IZzZcsxgiJ4gA8E3i5uQeKySqQqShAqCogADBrBwfak2I4QiADUiACMfAmJYgC%2BiJi8mEKIha6WVUmejL6IzPxC1cGh4TGq%2BQXJqfSxeW1BfSZyWbk9NSVlFbXi82KjA0MWpJhQIKRIshpVwta6SGAgyNhwwNjcMABuOGCYMADmABYARnBbLPRPqMiYHDAHFIHGcrQs3A2iGud1SnzA0kU8WqwDgcnokOkABM5IoALTZNSIHG%2BRSE4m4imZHKBIKo9GY4npfHkrHpHxkolsmLcia0gownBccCI6G3IXw6QZYYFX7-JQNLIkrJgAQAUkQYAi3iV6RV6s16hllWqiyaGy2SEFcJFiDxiDlmDCESie2EB3ANj0DwAHlBsE9MA8aEcfn8AZr%2BRIwFJNZg-TE0Fg8IQSORKNQ6PQgZGpvSvIzmDF4k04ExGmAiUXFEW%2BeC6WiC1CuNxi0SWxX2zwYh26%2BYCtHY9bhQiYiczhcruLsA9nu9PqRvo7AWxjQP1xu1mXQTxVgOPAXpyPpH5cIgAD7nsWw4%2BIAB8iAAzFH176oGEyy6eNEkVNgsVShYcoDwxI9JQUeRFGfetNzfD8mC-bgfxyP8ggA2Z%2B1g%2BN32YRDkMdeC8NQtwzQsM0zXWTZtjjP03XdLgY2kNMKFkRMMBwAhiDIFjMwYABWDg%2BKGYQGNjR0uiUWIOCkuJpOklRV03SSOGyFS1JyBS10sZTZJyOS4k0pSZNU3STNiQyNx0mTrPko1hDfAMgzIVBQ2XRAhI0IA)
 
 ---
 
