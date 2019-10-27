@@ -5,3 +5,17 @@ li, p, td {
 th {
     font-size: 0.9em !important;
 }
+
+.reveal pre code {
+    display: block;
+    padding: 5px;
+    overflow: auto;
+    max-height: 600px;
+    word-wrap: normal;
+}
+
+.reveal code {
+    font-family: monospace;
+    font-size: 0.9em;
+    text-transform: none;
+}
